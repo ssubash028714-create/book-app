@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shelf Pick - Online Book Store</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f4f4f4;
+}
+
+.header{
+    background:#764ba2;
+    color:white;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.search{
+    padding:8px;
+    width:250px;
+    border-radius:5px;
+    border:none;
+}
+
+.icons button{
+    padding:8px 12px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.nav{
+    background:#333;
+    padding:10px;
+    text-align:center;
+}
+
+.nav a{
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
+}
+
+.books{
+    padding:30px;
+}
+
+.book-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+}
+
+.book-card{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    text-align:center;
+    transition:0.3s;
+}
+
+.book-card:hover{
+    transform:translateY(-5px);
+}
+
+.book-card img{
+    width:100%;
+    height:400px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.book-card button{
+    margin-top:10px;
+    padding:12px 15px;
+    border:none;
+    background:#764ba2;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.book-card button:hover{
+    background:#5a3d91;
+}
+
+.Account:hover{
+    background: silver;
+}
+.Cart:hover{
+    background: silver;
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">📚 Shelf Pick</div>
+    <input type="text" placeholder="Search books..." class="search">
+    <div class="icons">
+        <button onclick="document.location='profile.html'" class="Account">👤 Account</button>
+        <button class="Cart">🛒 Cart</button>
+    </div>
+</header>
+
+<section class="books">
+
+<!-- 🔥 1. New Releases -->
+<h2>New Releases</h2>
+<div class="book-grid">
+
+<div class="book-card">
+<img src="download.jpeg">
+<h3>சில நேரங்களில் சில மனிதர்கள்</h3>
+<button onclick="goToBook('சில நேரங்களில் சில மனிதர்கள்')">Order Book</button>
+</div>
+
+<div class="book-card">
+<img src="download (1).jpeg">
+<h3>திருக்குறள்</h3>
+<button onclick="goToBook('திருக்குறள்')">Order Book</button>
+</div>
+
+<div class="book-card">
+<img src="இரகசியம்.jfif">
+<h3>இரகசியம்</h3>
+<button onclick="goToBook('இரகசியம்')">Order Book</button>
+</div>
+
+<div class="book-card">
+<img src="download (4).jpeg">
+<h3>பார்த்திபன் கனவு</h3>
+<button onclick="goToBook('பார்த்திபன் கனவு')">Order Book</button>
+</div>
+
+</div>
+
+
+<!-- 🔥 2. Tamil History -->
+<h2 style="margin-top:50px;">Tamil History</h2>
+<div class="book-grid">
+
+<div class="book-card">
+<img src="தமிழ்ர் வரலாறு.jpeg">
+<h3>தமிழர் வரலாறு</h3>
+<button onclick="goToBook('தமிழர் வரலாறு')">Order Book</button>
+</div>
+
+<div class="book-card">
+<img src="சோழர் வரலாறு.jpg">
+<h3>சோழர் வரலாறு</h3>
+<button onclick="goToBook('சோழர் வரலாறு')">Order Book</button>
+</div>
+
+<div class="book-card">
+<img src="history3.jpeg">
+<h3>பாண்டியர் வரலாறு</h3>
+<button onclick="goToBook('பாண்டியர் வரலாறு')">Order Book</button>
+</div>
+
+<div class="book-card">
+<img src="history4.jpeg">
+<h3>சேரர் வரலாறு</h3>
+<button onclick="goToBook('சேரர் வரலாறு')">Order Book</button>
+</div>
+
+</div>
+
+
+<!-- 🔥 3. English Books -->
+<h2 style="margin-top:50px;">English Books</h2>
+<div class="book-grid">
+
+<div class="book-card">
+<img src="eng1.jpeg">
+<h3>The Alchemist</h3>
+<button onclick="goToBook('The Alchemist')">Order Book</button>
+</div>
+
+<div class="book-card">
+<img src="eng2.jpeg">
+<h3>Rich Dad Poor Dad</h3>
+<button onclick="goToBook('Rich Dad Poor Dad')">Order Book</button>
+</div>
+
+<div class="book-card">
+<img src="eng3.jpeg">
+<h3>Atomic Habits</h3>
+<button onclick="goToBook('Atomic Habits')">Order Book</button>
+</div>
+
+<div class="book-card">
+<img src="eng4.jpeg">
+<h3>Think and Grow Rich</h3>
+<button onclick="goToBook('Think and Grow Rich')">Order Book</button>
+</div>
+
+</div>
+
+
+<!-- 🔥 4. Romance -->
+<h2 style="margin-top:50px;">Romance</h2>
+<div class="book-grid">
+
+<div class="book-card">
+<img src="rom1.jpeg">
+<h3>Me Before You</h3>
+<button onclick="goToBook('Me Before You')">Order Book</button>
+</div>
+
+<div class="book-card">
+<img src="rom2.jpeg">
+<h3>Love & Other Words</h3>
+<button onclick="goToBook('Love & Other Words')">Order Book</button>
+</div>
+
+</div>
+
+
+<!-- 🔥 5. Self Development -->
+<h2 style="margin-top:50px;">Self Development</h2>
+<div class="book-grid">
+
+<div class="book-card">
+<img src="self1.jpeg">
+<h3>You Can Win</h3>
+<button onclick="goToBook('You Can Win')">Order Book</button>
+</div>
+
+<div class="book-card">
+<img src="self2.jpeg">
+<h3>The Power of Now</h3>
+<button onclick="goToBook('The Power of Now')">Order Book</button>
+</div>
+
+</div>
+
+</section>
+
+<script>
+function goToBook(bookName){
+    localStorage.setItem("selectedBook", bookName);
+    window.location.href="book details.html";
+}
+</script>
+
+</body>
+</html>

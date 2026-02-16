@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Book Details</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.card{
+    background:white;
+    width:750px;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.3);
+    display:flex;
+    gap:30px;
+    align-items:center;
+    animation:fadeIn 0.6s ease-in-out;
+}
+
+.book-image{
+    width:250px;
+    height:350px;
+    border-radius:15px;
+    object-fit:cover;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+.details{
+    flex:1;
+}
+
+.details h2{
+    margin-bottom:10px;
+    font-size:28px;
+}
+
+.author{
+    font-size:18px;
+    margin-bottom:8px;
+    color:#555;
+}
+
+.rating{
+    color:#ff9800;
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.price{
+    font-size:24px;
+    color:#e91e63;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.description{
+    font-size:15px;
+    color:#333;
+    line-height:1.6;
+}
+
+button{
+    margin-top:20px;
+    padding:10px 20px;
+    border:none;
+    background:#764ba2;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+button:hover{
+    background:#5a3d91;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+</style>
+
+</head>
+<body>
+
+<div class="card">
+
+<img id="bookImage" class="book-image">
+
+<div class="details">
+<h2 id="bookName"></h2>
+<p class="author" id="author"></p>
+<p class="rating" id="rating"></p>
+<p class="price" id="price"></p>
+<p class="description" id="description"></p>
+<button onclick="goBack()">⬅ Back</button>
+</div>
+
+</div>
+
+<script>
+
+const books = {
+
+"சில நேரங்களில் சில மனிதர்கள்":{
+price:"₹350",
+author:"ஜெயகாந்தன்",
+rating:"⭐⭐⭐⭐⭐",
+image:"download.jpeg",
+description:"சமூகத்தின் உண்மைகளை வெளிப்படுத்தும் ஆழமான தமிழ் நாவல். மனித மனத்தின் பல அடுக்குகளை சித்தரிக்கும் சிறந்த படைப்பு."
+},
+
+"திருக்குறள்":{
+price:"₹200",
+author:"திருவள்ளுவர்",
+rating:"⭐⭐⭐⭐⭐",
+image:"download (1).jpeg",
+description:"1330 குறள்கள் கொண்ட உலகப் புகழ்பெற்ற தமிழ் இலக்கியம். வாழ்க்கை நெறிமுறைகள் மற்றும் தர்மம் பற்றி பேசுகிறது."
+},
+
+"இரகசியம்":{
+price:"₹400",
+author:"ரோண்டா பெர்ன்",
+rating:"⭐⭐⭐⭐",
+image:"இரகசியம்.jfif",
+description:"நீங்கள் நினைப்பதை வாழ்க்கையில் அடைய உதவும் சட்டங்களை விளக்கும் புத்தகம்."
+},
+
+"பார்த்திபன் கனவு":{
+price:"₹300",
+author:"கல்கி"⭐⭐",
+image:"download,
+rating:"⭐⭐⭐ (4).jpeg",
+description:"சோழர் வரலாற்றை மையமாக கொண்டு எழுதப்பட்ட வரலாற்று நாவல்."
+},
+
+"The Alchemist":{
+price:"₹399",
+author:"Paulo Coelho",
+rating:"⭐⭐⭐⭐⭐",
+image:"eng1.jpeg",
+description:"A philosophical novel about following your dreams and discovering your destiny."
+},
+
+"Atomic Habits":{
+price:"₹550",
+author:"James Clear",
+rating:"⭐⭐⭐⭐⭐",
+image:"eng3.jpeg",
+description:"A practical guide to building good habits and breaking bad ones for lasting success."
+}
+
+};
+
+const selectedBook = localStorage.getItem("selectedBook");
+const book = books[selectedBook];
+
+if(book){
+document.getElementById("bookName").innerText = selectedBook;
+document.getElementById("author").innerText = "✍ Author: " + book.author;
+document.getElementById("rating").innerText = book.rating;
+document.getElementById("price").innerText = "💰 Price: " + book.price;
+document.getElementById("description").innerText = book.description;
+document.getElementById("bookImage").src = book.image;
+}
+
+function goBack(){
+window.location.href="book.html";
+}
+
+</script>
+
+</body>
+</html>

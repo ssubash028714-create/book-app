@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shelf Pick Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#667eea,#764ba2);
+}
+
+.container{
+width:380px;
+padding:40px;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(15px);
+border-radius:20px;
+box-shadow:0 15px 35px rgba(0,0,0,0.3);
+color:white;
+animation:fadeIn 0.8s ease-in-out;
+}
+
+.container h2{
+text-align:center;
+margin-bottom:25px;
+font-size:26px;
+}
+
+.input-box{
+margin-bottom:18px;
+position:relative;
+}
+
+.input-box input{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+outline:none;
+font-size:15px;
+}
+
+.input-box span{
+position:absolute;
+right:10px;
+top:12px;
+cursor:pointer;
+color:black;
+}
+
+.remember{
+display:flex;
+justify-content:space-between;
+font-size:14px;
+margin-bottom:15px;
+}
+
+.remember label{
+display:flex;
+align-items:center;
+gap:5px;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#ff9800;
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#e68900;
+transform:scale(1.05);
+}
+
+.signup{
+text-align:center;
+margin-top:15px;
+font-size:14px;
+}
+
+.signup a{
+color:#fff;
+text-decoration:underline;
+}
+
+.error{
+color:#ffcccb;
+font-size:13px;
+margin-bottom:10px;
+display:none;
+}
+
+#otpSection{
+display:none;
+margin-top:15px;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2>📚 Shelf Pick Login</h2>
+
+<div class="error" id="errorMsg"></div>
+
+<div class="input-box">
+<input type="text" id="fullname" placeholder="Full Name">
+</div>
+
+<div class="input-box">
+<input type="email" id="email" placeholder="Email">
+</div>
+
+<div class="input-box">
+<input type="text" id="phone" placeholder="Phone Number">
+</div>
+
+<div class="input-box">
+<input type="password" id="password" placeholder="Password">
+<span onclick="togglePassword()">👁</span>
+</div>
+
+<div class="remember">
+<label><input type="checkbox"> Remember Me</label>
+<a href="#" style="color:white;">Forgot?</a>
+</div>
+
+<button onclick="sendOTP()">Login</button>
+
+<div id="otpSection">
+<div class="input-box">
+<input type="text" id="otpInput" placeholder="Enter 4 Digit OTP">
+</div>
+<button onclick="verifyOTP()">Verify OTP</button>
+</div>
+
+<div class="signup">
+Don't have account? <a href="#">Sign Up</a>
+</div>
+
+</div>
+
+<script>
+
+let generatedOTP = "";
+
+function togglePassword(){
+const pass = document.getElementById("password");
+pass.type = pass.type === "password" ? "text" : "password";
+}
+
+function sendOTP(){
+
+const name = document.getElementById("fullname").value.trim();
+const email = document.getElementById("email").value.trim();
+const phone = document.getElementById("phone").value.trim();
+const password = document.getElementById("password").value.trim();
+const error = document.getElementById("errorMsg");
+
+if(name === "" || email === "" || phone === "" || password === ""){
+error.style.display = "block";
+error.innerText = "Please fill all details!";
+return;
+}
+
+if(password.length < 6){
+error.style.display = "block";
+error.innerText = "Password must be at least 6 characters!";
+return;
+}
+
+if(phone.length !== 10){
+error.style.display = "block";
+error.innerText = "Enter valid 10 digit phone number!";
+return;
+}
+
+error.style.display = "none";
+
+generatedOTP = Math.floor(1000 + Math.random() * 9000);
+alert("Your OTP is: " + generatedOTP);
+
+document.getElementById("otpSection").style.display = "block";
+}
+
+function verifyOTP(){
+
+const userOTP = document.getElementById("otpInput").value.trim();
+const error = document.getElementById("errorMsg");
+
+if(userOTP === generatedOTP.toString()){
+
+// ✅ SAVE DATA
+localStorage.setItem("username", document.getElementById("fullname").value.trim());
+localStorage.setItem("useremail", document.getElementById("email").value.trim());
+localStorage.setItem("userphone", document.getElementById("phone").value.trim());
+
+window.location.href = "book.html";
+
+}else{
+error.style.display = "block";
+error.innerText = "Invalid OTP! Try again.";
+}
+
+}
+
+</script>
+
+</body>
+</html>

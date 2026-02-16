@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Profile Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet"/>
+<script src="https://unpkg.com/cropperjs/dist/cropper.js"></script>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#667eea,#764ba2);
+transition:0.3s;
+}
+
+.profile-container{
+max-width:400px;
+margin:auto;
+background:#fff;
+min-height:100vh;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 15px 35px rgba(0,0,0,0.2);
+position:relative;
+}
+
+.back-btn{
+position:absolute;
+top:15px;
+left:15px;
+background:#fff;
+padding:8px 12px;
+border-radius:50px;
+text-decoration:none;
+font-size:18px;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+.header{
+height:180px;
+background:linear-gradient(135deg,#6a11cb,#2575fc);
+}
+
+.profile-pic{
+display:flex;
+justify-content:center;
+margin-top:-60px;
+position:relative;
+flex-direction:column;
+align-items:center;
+}
+
+.profile-pic img{
+width:130px;
+height:130px;
+border-radius:50%;
+border:5px solid #fff;
+object-fit:cover;
+}
+
+.pencil{
+position:absolute;
+bottom:5px;
+right:120px;
+background:#2575fc;
+color:#fff;
+width:35px;
+height:35px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+font-size:16px;
+}
+
+.save-btn{
+margin-top:10px;
+padding:6px 15px;
+border:none;
+background:#28a745;
+color:#fff;
+border-radius:5px;
+cursor:pointer;
+display:none;
+}
+
+.name{
+text-align:center;
+margin:15px 0;
+font-size:22px;
+font-weight:bold;
+}
+
+.info{
+padding:0 20px;
+}
+
+.row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:10px 0;
+color:#555;
+font-size:14px;
+}
+
+.menu{
+margin-top:20px;
+}
+
+.menu-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+border-top:1px solid #eee;
+cursor:pointer;
+}
+
+.logout{
+color:red;
+font-weight:600;
+}
+
+body.dark{
+background:#121212;
+}
+
+body.dark .profile-container{
+background:#1e1e1e;
+color:#fff;
+}
+
+.crop-container{
+width:250px;
+margin-top:10px;
+display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="profile-container">
+
+<a href="book.html" class="back-btn">⬅</a>
+
+<div class="header"></div>
+
+<div class="profile-pic">
+<img id="profileImage" src="profile picture.png" alt="Profile">
+<div class="pencil" onclick="changeImage()">✏</div>
+<input type="file" id="imageInput" accept="image/*" style="display:none">
+
+<div class="crop-container">
+<img id="cropImage">
+</div>
+
+<button class="save-btn" id="saveImageBtn">Save</button>
+</div>
+
+<h2 class="name" id="profileName"></h2>
+
+<div class="info">
+<div class="row">
+<span>Mail</span>
+<span id="profileEmail"></span>
+</div>
+
+<div class="row">
+<span>Phone</span>
+<span id="profilePhone"></span>
+</div>
+</div>
+
+<div class="menu">
+
+<div class="menu-item">
+🌙 Dark mode
+<input type="checkbox" id="darkToggle">
+</div>
+
+<div class="menu-item logout" onclick="logout()">
+⎋ Log out
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("profileName").innerText =
+localStorage.getItem("username") || "User";
+
+document.getElementById("profileEmail").innerText =
+localStorage.getItem("useremail") || "user@email.com";
+
+document.getElementById("profilePhone").innerText =
+localStorage.getItem("userphone") || "Not Provided";
+
+if(localStorage.getItem("profileImage")){
+document.getElementById("profileImage").src =
+localStorage.getItem("profileImage");
+}
+
+document.getElementById("darkToggle")
+.addEventListener("change",function(){
+document.body.classList.toggle("dark");
+});
+
+function changeImage(){
+document.getElementById("imageInput").click();
+}
+
+let cropper;
+
+document.getElementById("imageInput").addEventListener("change", function(e){
+const file = e.target.files[0];
+const reader = new FileReader();
+
+reader.onload = function(){
+const cropImage = document.getElementById("cropImage");
+cropImage.src = reader.result;
+document.querySelector(".crop-container").style.display="block";
+document.getElementById("saveImageBtn").style.display="inline-block";
+
+cropper = new Cropper(cropImage,{
+aspectRatio:1,
+viewMode:1,
+});
+};
+
+reader.readAsDataURL(file);
+});
+
+document.getElementById("saveImageBtn").addEventListener("click", function(){
+const canvas = cropper.getCroppedCanvas({
+width:300,
+height:300
+});
+
+const finalImage = canvas.toDataURL();
+document.getElementById("profileImage").src = finalImage;
+localStorage.setItem("profileImage", finalImage);
+
+document.querySelector(".crop-container").style.display="none";
+this.style.display="none";
+cropper.destroy();
+});
+
+function logout(){
+localStorage.clear();
+window.location.href="sign.html";
+}
+
+</script>
+
+</body>
+</html>

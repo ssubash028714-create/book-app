@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f8f8f8;
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background: white;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.search {
+    width: 40%;
+    padding: 8px;
+}
+
+.icons span {
+    margin-left: 15px;
+    display: inline-block;
+}
+
+/* Navigation */
+.nav {
+    background: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+}
+
+.nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Banner */
+.banner {
+    background: linear-gradient(to right, #cfe9ff, #eaf6ff);
+    padding: 60px;
+    text-align: right;
+}
+
+.banner-text h1 {
+    font-size: 36px;
+    color: snow;
+}
+
+.banner-text{
+    color: snow;
+}
+
+
+.banner-text button {
+    padding: 10px 20px;
+    border: none;
+    background:rgb(0, 0, 0);
+    color: white;
+    cursor: pointer;
+}
+
+/* Books */
+.books {
+    padding: 30px;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.book-card {
+    background: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.book-card img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.banner {
+  
+    background-image: url("new year.png");
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    min-height: 1000px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+ button {
+            padding: 8px 15px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkgreen;
+        }
+.book-card{
+      border-top-style: solid;
+      border-bottom: solid; 
+      border-left: solid;
+      border-right: solid;
+    
+}
